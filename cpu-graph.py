@@ -18,17 +18,11 @@ cpu_percent_usage = []
 for i in range (6):
 	cpu_usage_var = psutil.cpu_percent(0.14)
 	cpu_usage_var = int(cpu_usage_var)
-	cpu_usage_list.append(cpu_usage_var)
-
-	cpu_percent_usage.append(cpu_usage_var) 
-	#print(cpu_usage_list)	
-		
+	cpu_usage_list.append(cpu_usage_var)	
 	n.append(i)
-	#print(n)
 
-#print(f"\r the list is complete {cpu_usage_list}")
-#make the "moyenne" for print next to the graph
-cpu_percent_usage = round(sum(cpu_percent_usage)/len(cpu_percent_usage))
+#make the medium for print next to the graph
+cpu_percent_usage = round(sum(cpu_usage_list)/len(cpu_usage_list))
 
 result = plt.plot(n, cpu_usage_list, width=15, height=1, interp="linear", lc="red")
 
@@ -43,11 +37,8 @@ rmv_number = str.maketrans("", "", digits)
 result = result.translate(replacement)
 result = result.translate(rmv_number)
 
-# convert into a list to remove non used space
+# convert into a list to remove useless space
 result = list(result)
-
-#del result[0:13] 
-#del result [18:37]
 
 if cpu_percent_usage > 99:
 	del result[0:13]
